@@ -59,3 +59,4 @@ namespace ApiExec
 ```
 ## TODO
 非同期対応
+WebClient -> HttpClient
