@@ -11,7 +11,7 @@ namespace TeratailApiClient.Data
         /// <summary>
         /// 質問リスト
         /// </summary>
-        public List<QuestionSimple> Questions { get; set; }
+        public List<QuestionBase> Questions { get; set; }
 
         /// <summary>
         /// メタ情報
@@ -38,8 +38,19 @@ namespace TeratailApiClient.Data
     /// <summary>
     /// 質問詳細情報
     /// </summary>
-    public class Question : QuestionSimple
+    public class Question : QuestionBase
     {
+
+        /// <summary>
+        /// 質問の本文（Markdown記法）
+        /// </summary>
+        public string Body { get; set; }
+
+        /// <summary>
+        /// 質問の本文（HTML記法）
+        /// </summary>
+        public string BodyStr { get; set; }
+
         /// <summary>
         /// 回答一覧
         /// </summary>
@@ -105,21 +116,5 @@ namespace TeratailApiClient.Data
         /// 質問投稿ユーザーオブジェクト
         /// </summary>
         public UserBase User { get; set; }
-    }
-
-    /// <summary>
-    /// 質問情報本文あり
-    /// </summary>
-    public class QuestionSimple : QuestionBase
-    {
-        /// <summary>
-        /// 質問の本文（Markdown記法）
-        /// </summary>
-        public string Body { get; set; }
-        
-        /// <summary>
-        /// 質問の本文（HTML記法）
-        /// </summary>
-        public string BodyStr { get; set; }
     }
 }
