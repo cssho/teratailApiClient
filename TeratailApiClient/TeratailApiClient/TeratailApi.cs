@@ -9,7 +9,12 @@ namespace TeratailApiClient
     /// </summary>
     public class TeratailApi
     {
+        /// <summary>
+        /// ベースURL
+        /// </summary>
         private static readonly Uri baseUri = new Uri("https://teratail.com/api/v1/");
+
+        // 各エンドポイントパス
         private static readonly string questionPath = "questions";
         private static readonly string userPath = "users";
         private static readonly string clipPath = "clips";

@@ -2,6 +2,9 @@
 
 namespace TeratailApiClient.Common
 {
+    /// <summary>
+    /// CamelCaseとSnakeCaseを解決
+    /// </summary>
     internal class SnakeCaseContractResolver : DefaultContractResolver
     {
         protected override string ResolvePropertyName(string propertyName)

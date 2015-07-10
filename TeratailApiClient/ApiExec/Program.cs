@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TeratailApiClient;
-using Newtonsoft.Json;
+using TeratailApiClient.Common;
 using TeratailApiClient.Data;
 namespace ApiExec
 {
     class Program
     {
+        private static readonly string tagGitHub = "GitHub";
+
         static void Main(string[] args)
         {
             // アクセストークンを指定する場合
@@ -17,24 +16,28 @@ namespace ApiExec
             // アクセストークンを指定しない場合
             TeratailApi tera = new TeratailApi();
 
+            // 10件ずつGitHubタグの付いた質問をリストアップ
             int page = 1;
             int limit = 10;
-            var tagq = tera.GetTagQuestionList("GitHub", limit, page);
-            tagq.Questions.ForEach(x =>
-            {
-                Console.WriteLine(x.Title);
-            });
-            while (tagq.Meta.HasNext)
+            var meta =  ListUpTag(tera, page, limit);
+            while (meta.HasNext())
             {
                 Console.WriteLine("====================");
                 page++;
-                tagq = tera.GetTagQuestionList("GitHub", limit, page);
-                tagq.Questions.ForEach(x =>
-                {
-                    Console.WriteLine(x.Title);
-                });
+                meta = ListUpTag(tera, page, limit);
             }
             Console.ReadKey();
+        }
+
+        private static MetaPage ListUpTag(TeratailApi tera, int page, int limit)
+        {
+            var tagq = tera.GetTagQuestionList(tagGitHub, limit, page);
+            tera.GetTagQuestionList(tagGitHub, limit, page).Questions.ForEach(x =>
+            {
+                Console.WriteLine(x.Title);
+                Console.WriteLine(x.User.DisplayName);
+            });
+            return tagq.Meta;
         }
 
     }

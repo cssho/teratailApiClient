@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ApiUtil.cs" />
     <Compile Include="Common\CommonUtil.cs" />
     <Compile Include="Data\Badge.cs" />
     <Compile Include="Data\ScoreRanking.cs" />
