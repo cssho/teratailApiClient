@@ -9,6 +9,9 @@
 [teratail API](https://teratail.com/api)
 > teratail APIは、teratailで使われている質問や回答、ユーザー、タグなどの情報を利用するためのWeb APIです。
 
+## 注意点
+質問一覧等を取得した際に、ユーザが`退会済み`や`ゲストユーザ`だとUserプロパティは`null`になります。
+
 ## Sample
 ```csharp
 using System;
