@@ -68,5 +68,9 @@ namespace ApiExec
 
 ```
 ### TODO
-* 非同期対応
-* WebClient -> HttpClient
+* 非同期対応 2015/09/22 完了
+* WebClient -> HttpClient 2015/09/22 完了
+* 2015/8/5 機能追加対応
+	* /usersエンドポイントを追加
+	* /users/searchエンドポイントを追加
+	* プレゼンのQuestionオブジェクトにis_presentationフィールドを追加
