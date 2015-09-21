@@ -1,7 +1,7 @@
 ﻿using System;
-using TeratailApiClient;
-using TeratailApiClient.Common;
-using TeratailApiClient.Data;
+using TeratailApiClientAsync;
+using TeratailApiClientAsync.Common;
+using TeratailApiClientAsync.Data;
 namespace ApiExec
 {
     class Program
@@ -31,11 +31,11 @@ namespace ApiExec
 
         private static MetaPage ListUpTag(TeratailApi tera, int page, int limit)
         {
-            var tagq = tera.GetTagQuestionList(tagGitHub, limit, page);
-            tera.GetTagQuestionList(tagGitHub, limit, page).Questions.ForEach(x =>
+            var tagq = tera.GetTagQuestionList(tagGitHub, limit, page).Result;
+            tera.GetTagQuestionList(tagGitHub, limit, page).Result.Questions.ForEach(x =>
             {
                 Console.WriteLine(x.Title);
-                Console.WriteLine(x.User.DisplayName);
+                Console.WriteLine(x.User?.DisplayName);
             });
             return tagq.Meta;
         }
