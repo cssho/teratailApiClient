@@ -69,6 +69,16 @@ namespace TeratailApiClient
         }
 
         /// <summary>
+        /// 登録されている全ユーザーの情報を、登録日の降順で返します。
+        /// </summary>
+        /// <returns>全ユーザーの情報</returns>
+        public UserList GetUserList(int? limit = null, int? page = null)
+        {
+            return CommonUtil.GetQuery<UserList>(
+                new Uri(baseUri, string.Join(@"/", userPath)), AccessToken, limit, page);
+        }
+
+        /// <summary>
         /// displayNameで指定したユーザーの情報を返します。
         /// </summary>
         /// <param name="displayName">teratailユーザー名</param>
