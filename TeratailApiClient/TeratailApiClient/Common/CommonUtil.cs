@@ -17,8 +17,9 @@ namespace TeratailApiClient.Common
         /// <param name="token">アクセストークン</param>
         /// <param name="limit">1ページあたりの表示件数</param>
         /// <param name="page">ページ番号</param>
+        /// <param name="query">検索文字列</param>
         /// <returns>取得結果</returns>
-        internal static T GetQuery<T>(Uri uri, string token, int? limit = null, int? page = null) where T : class
+        internal static T GetQuery<T>(Uri uri, string token, int? limit = null, int? page = null, string query = null) where T : class
         {
             // ページネーション情報を保持している場合、パラメータに設定
             var param = new NameValueCollection();
@@ -26,6 +27,8 @@ namespace TeratailApiClient.Common
                 param.Add("limit", limit.Value.ToString());
             if (page.HasValue)
                 param.Add("page", page.Value.ToString());
+            if (query != null)
+                param.Add("q", query);
 
             using (var client = new WebClient())
             {

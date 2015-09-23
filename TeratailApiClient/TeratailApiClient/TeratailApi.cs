@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using TeratailApiClient.Common;
 using TeratailApiClient.Data;
 
@@ -22,6 +23,7 @@ namespace TeratailApiClient
         private static readonly string replyPath = "replies";
         private static readonly string followerPath = "followers";
         private static readonly string followingPath = "followings";
+        private static readonly string searchPath = "search";
 
         /// <summary>
         /// アクセストークン
@@ -66,6 +68,26 @@ namespace TeratailApiClient
         {
             return CommonUtil.GetQuery<QuestionDetail>(
                 new Uri(baseUri, string.Join(@"/", questionPath, questionId)), AccessToken);
+        }
+
+        /// <summary>
+        /// 文字列queryを含むdisplay_nameを持つユーザー一覧を返します。
+        /// display_nameに使用できる文字は半角英数及び-、_、.なので、 queryにこれら以外の文字が含まれているとBad Requesetが返ります。
+        /// またdisplay_nameの最大は15文字なので、queryがこれを超えているとBad Requestが返ります。
+        /// </summary>
+        /// <param name="query">teratailユーザー名検索クエリ</param>
+        /// <returns>文字列queryを含むdisplay_nameを持つユーザー一覧</returns>
+        public UserList GetUserList(string query, int? limit = null, int? page = null)
+        {
+            if (Regex.IsMatch(query, @"^[0-9a-zA-Z\-\_\.]*$"))
+                throw new ArgumentException("queryに使用できる文字は半角英数及び「-」、「_」、「.」です。");
+
+            if (query.Length > 15)
+                throw new ArgumentException("queryは15文字以下で指定してください。");
+
+            return CommonUtil.GetQuery<UserList>(
+                new Uri(baseUri, string.Join(@"/", userPath, searchPath)), AccessToken, limit, page, query);
+
         }
 
         /// <summary>
