@@ -116,5 +116,10 @@ namespace TeratailApiClient.Data
         /// 質問投稿ユーザーオブジェクト
         /// </summary>
         public UserBase User { get; set; }
+
+        /// <summary>
+        /// 質問がプレゼンテーションかどうか
+        /// </summary>
+        public bool IsPresentation { get; set; }
     }
 }
