@@ -1,7 +1,6 @@
 ﻿using System;
-using TeratailApiClientAsync;
-using TeratailApiClientAsync.Common;
-using TeratailApiClientAsync.Data;
+using TeratailApiClient.Async;
+using TeratailApiClient.Data;
 namespace ApiExec
 {
     class Program
@@ -20,6 +19,17 @@ namespace ApiExec
             Console.WriteLine(result.Users[0].DisplayName);
             result = tera.GetUserList("sho_cs").Result;
             Console.WriteLine(result.Users[0].DisplayName);
+
+            // 10件ずつGitHubタグの付いた質問をリストアップ
+            int page = 1;
+            int limit = 10;
+            var meta = ListUpTag(tera, page, limit);
+            while (meta.TotalPage > page)
+            {
+                Console.WriteLine("====================");
+                page++;
+                meta = ListUpTag(tera, page, limit);
+            }
             Console.ReadKey();
         }
 

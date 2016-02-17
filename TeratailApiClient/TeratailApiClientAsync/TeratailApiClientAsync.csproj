@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -45,22 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\ApiUtil.cs" />
-    <Compile Include="Common\CommonUtil.cs" />
-    <Compile Include="Common\JsonUtil.cs" />
-    <Compile Include="Common\SnakeCaseContractResolver.cs" />
-    <Compile Include="Data\Badge.cs" />
-    <Compile Include="Data\Meta.cs" />
-    <Compile Include="Data\QuestionData.cs" />
-    <Compile Include="Data\Reply.cs" />
-    <Compile Include="Data\ScoreRanking.cs" />
-    <Compile Include="Data\TagList.cs" />
-    <Compile Include="Data\UserData.cs" />
+    <Compile Include="Common\Util.cs" />
     <Compile Include="TeratailApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\TeratailApiClient.Core\TeratailApiClient.Core.csproj">
+      <Project>{0395846a-c44a-4298-ba74-bfc301a487c2}</Project>
+      <Name>TeratailApiClient.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

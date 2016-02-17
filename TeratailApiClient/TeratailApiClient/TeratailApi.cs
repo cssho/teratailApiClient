@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using TeratailApiClient.Common;
+using TeratailApiClient.Core;
 using TeratailApiClient.Data;
 
 namespace TeratailApiClient
@@ -8,45 +9,18 @@ namespace TeratailApiClient
     /// <summary>
     /// teratail API Client
     /// </summary>
-    public class TeratailApi
+    public class TeratailApi : ApiBase
     {
-        /// <summary>
-        /// ベースURL
-        /// </summary>
-        private static readonly Uri baseUri = new Uri("https://teratail.com/api/v1/");
-
-        // 各エンドポイントパス
-        private static readonly string questionPath = "questions";
-        private static readonly string userPath = "users";
-        private static readonly string clipPath = "clips";
-        private static readonly string tagPath = "tags";
-        private static readonly string replyPath = "replies";
-        private static readonly string followerPath = "followers";
-        private static readonly string followingPath = "followings";
-        private static readonly string searchPath = "search";
-
-        /// <summary>
-        /// アクセストークン
-        /// https://teratail.com/users/setting/tokens
-        /// </summary>
-        public string AccessToken { get; set; }
-
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public TeratailApi()
-        {
-        }
+        public TeratailApi() : base() { }
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
         /// <param name="token">アクセストークン</param>
-        public TeratailApi(string token)
-            : this()
-        {
-            AccessToken = token;
-        }
+        public TeratailApi(string token) : base(token) { }
 
         /// <summary>
         /// 質問の一覧を返します。
@@ -56,7 +30,7 @@ namespace TeratailApiClient
         /// <returns>質問の一覧</returns>
         public QuestionList GetQuestionList(int? limit = null, int? page = null)
         {
-            return CommonUtil.GetQuery<QuestionList>(new Uri(baseUri, questionPath), AccessToken, limit, page);
+            return Util.GetQuery<QuestionList>(new Uri(baseUri, questionPath), AccessToken, limit, page);
         }
 
         /// <summary>
@@ -66,7 +40,7 @@ namespace TeratailApiClient
         /// <returns>質問詳細とその回答</returns>
         public QuestionDetail GetQuestionDetail(int questionId)
         {
-            return CommonUtil.GetQuery<QuestionDetail>(
+            return Util.GetQuery<QuestionDetail>(
                 new Uri(baseUri, string.Join(@"/", questionPath, questionId)), AccessToken);
         }
 
@@ -76,7 +50,7 @@ namespace TeratailApiClient
         /// <returns>全ユーザーの情報</returns>
         public UserList GetUserList(int? limit = null, int? page = null)
         {
-            return CommonUtil.GetQuery<UserList>(
+            return Util.GetQuery<UserList>(
                 new Uri(baseUri, string.Join(@"/", userPath)), AccessToken, limit, page);
         }
         /// <summary>
@@ -94,7 +68,7 @@ namespace TeratailApiClient
             if (query.Length > 15)
                 throw new ArgumentException("queryは15文字以下で指定してください。");
 
-            return CommonUtil.GetQuery<UserList>(
+            return Util.GetQuery<UserList>(
                 new Uri(baseUri, string.Join(@"/", userPath, searchPath)), AccessToken, limit, page, query);
         }
 
@@ -105,7 +79,7 @@ namespace TeratailApiClient
         /// <returns>ユーザーの情報</returns>
         public UserDetail GetUserDetail(string displayName)
         {
-            return CommonUtil.GetQuery<UserDetail>(
+            return Util.GetQuery<UserDetail>(
                 new Uri(baseUri, string.Join(@"/", userPath, Uri.EscapeDataString(displayName))), AccessToken);
         }
 
@@ -118,7 +92,7 @@ namespace TeratailApiClient
         /// <returns>クリップした質問一覧</returns>
         public QuestionList GetUserClipList(string displayName, int? limit = null, int? page = null)
         {
-            return CommonUtil.GetQuery<QuestionList>(
+            return Util.GetQuery<QuestionList>(
                 new Uri(baseUri, string.Join(@"/", userPath, Uri.EscapeDataString(displayName), clipPath)), AccessToken, limit, page);
         }
 
@@ -131,7 +105,7 @@ namespace TeratailApiClient
         /// <returns>Myタグの一覧</returns>
         public TagList GetUserTagList(string displayName, int? limit = null, int? page = null)
         {
-            return CommonUtil.GetQuery<TagList>(
+            return Util.GetQuery<TagList>(
                 new Uri(baseUri, string.Join(@"/", userPath, Uri.EscapeDataString(displayName), tagPath)), AccessToken, limit, page);
         }
 
@@ -144,7 +118,7 @@ namespace TeratailApiClient
         /// <returns></returns>
         public QuestionList GetUserQuestionList(string displayName, int? limit = null, int? page = null)
         {
-            return CommonUtil.GetQuery<QuestionList>(
+            return Util.GetQuery<QuestionList>(
                 new Uri(baseUri, string.Join(@"/", userPath, Uri.EscapeDataString(displayName), questionPath)), AccessToken, limit, page);
         }
 
@@ -157,7 +131,7 @@ namespace TeratailApiClient
         /// <returns>回答の一覧</returns>
         public ReplyList GetUserReplyList(string displayName, int? limit = null, int? page = null)
         {
-            return CommonUtil.GetQuery<ReplyList>(
+            return Util.GetQuery<ReplyList>(
                 new Uri(baseUri, string.Join(@"/", userPath, Uri.EscapeDataString(displayName), replyPath)), AccessToken, limit, page);
         }
 
@@ -170,7 +144,7 @@ namespace TeratailApiClient
         /// <returns>フォロワーの一覧</returns>
         public UserList GetUserFollowerList(string displayName, int? limit = null, int? page = null)
         {
-            return CommonUtil.GetQuery<UserList>(
+            return Util.GetQuery<UserList>(
                 new Uri(baseUri, string.Join(@"/", userPath, Uri.EscapeDataString(displayName), followerPath)), AccessToken, limit, page);
         }
 
@@ -183,7 +157,7 @@ namespace TeratailApiClient
         /// <returns>フォローしているユーザーの一覧</returns>
         public UserList GetUserFollowingList(string displayName, int? limit = null, int? page = null)
         {
-            return CommonUtil.GetQuery<UserList>(
+            return Util.GetQuery<UserList>(
                 new Uri(baseUri, string.Join(@"/", userPath, Uri.EscapeDataString(displayName), followingPath)), AccessToken, limit, page);
         }
 
@@ -195,7 +169,7 @@ namespace TeratailApiClient
         /// <returns>タグの一覧</returns>
         public TagList GetTagList(int? limit = null, int? page = null)
         {
-            return CommonUtil.GetQuery<TagList>(
+            return Util.GetQuery<TagList>(
                 new Uri(baseUri, tagPath), AccessToken);
         }
 
@@ -208,7 +182,7 @@ namespace TeratailApiClient
         /// <returns>質問一覧</returns>
         public TagQuestionList GetTagQuestionList(string tagName, int? limit = null, int? page = null)
         {
-            return CommonUtil.GetQuery<TagQuestionList>(
+            return Util.GetQuery<TagQuestionList>(
                 new Uri(baseUri, string.Join(@"/", tagPath, Uri.EscapeDataString(tagName), questionPath)), AccessToken, limit, page);
         }
     }

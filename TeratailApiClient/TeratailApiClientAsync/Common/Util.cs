@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Specialized;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
+using TeratailApiClient.Common;
 
-namespace TeratailApiClientAsync.Common
+namespace TeratailApiClient.Async.Common
 {
     /// <summary>
     /// 共通クラス
     /// </summary>
-    internal static class CommonUtil
+    internal static class Util
     {
         /// <summary>
         /// データ取得
