@@ -7,7 +7,7 @@ namespace TeratailApiClient.Common
     /// <summary>
     /// 共通クラス
     /// </summary>
-    internal static class CommonUtil
+    internal static class Util
     {
         /// <summary>
         /// データ取得

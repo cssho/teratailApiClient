@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeratailApiClient", "TeratailAPIClient\TeratailApiClient.csproj", "{9B5C38AA-1623-4561-BC8B-92E41F6D4D6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiExec", "ApiExec\ApiExec.csproj", "{FD7C73A5-76FD-4413-91A4-B966587D51B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeratailApiClientAsync", "TeratailApiClientAsync\TeratailApiClientAsync.csproj", "{441D2A0B-7BF1-4BD8-B0D4-0EF41409B6C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeratailApiClient.Core", "TeratailApiClient.Core\TeratailApiClient.Core.csproj", "{0395846A-C44A-4298-BA74-BFC301A487C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,18 @@ Global
 		{441D2A0B-7BF1-4BD8-B0D4-0EF41409B6C7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{441D2A0B-7BF1-4BD8-B0D4-0EF41409B6C7}.Release|x86.ActiveCfg = Release|Any CPU
 		{441D2A0B-7BF1-4BD8-B0D4-0EF41409B6C7}.Release|x86.Build.0 = Release|Any CPU
+		{0395846A-C44A-4298-BA74-BFC301A487C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0395846A-C44A-4298-BA74-BFC301A487C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0395846A-C44A-4298-BA74-BFC301A487C2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0395846A-C44A-4298-BA74-BFC301A487C2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0395846A-C44A-4298-BA74-BFC301A487C2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0395846A-C44A-4298-BA74-BFC301A487C2}.Debug|x86.Build.0 = Debug|Any CPU
+		{0395846A-C44A-4298-BA74-BFC301A487C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0395846A-C44A-4298-BA74-BFC301A487C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0395846A-C44A-4298-BA74-BFC301A487C2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0395846A-C44A-4298-BA74-BFC301A487C2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0395846A-C44A-4298-BA74-BFC301A487C2}.Release|x86.ActiveCfg = Release|Any CPU
+		{0395846A-C44A-4298-BA74-BFC301A487C2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
