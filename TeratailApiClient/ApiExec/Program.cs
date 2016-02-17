@@ -16,16 +16,10 @@ namespace ApiExec
             // アクセストークンを指定しない場合
             TeratailApi tera = new TeratailApi();
 
-            // 10件ずつGitHubタグの付いた質問をリストアップ
-            int page = 1;
-            int limit = 10;
-            var meta =  ListUpTag(tera, page, limit);
-            while (meta.HasNext())
-            {
-                Console.WriteLine("====================");
-                page++;
-                meta = ListUpTag(tera, page, limit);
-            }
+            var result = tera.GetUserList().Result;
+            Console.WriteLine(result.Users[0].DisplayName);
+            result = tera.GetUserList("sho_cs").Result;
+            Console.WriteLine(result.Users[0].DisplayName);
             Console.ReadKey();
         }
 
@@ -36,6 +30,7 @@ namespace ApiExec
             {
                 Console.WriteLine(x.Title);
                 Console.WriteLine(x.User?.DisplayName);
+                Console.WriteLine(x.IsPresentation);
             });
             return tagq.Meta;
         }
